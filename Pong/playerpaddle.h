@@ -1,3 +1,10 @@
+/* playerpaddle.h
+ *
+ * Interface file for PlayerPaddle class
+ *
+ * J Karstin Neill       1.22.18
+ */
+
 #ifndef PLAYERPADDLE_H
 #define PLAYERPADDLE_H
 
@@ -7,7 +14,9 @@
 #include <QObject>
 #include "pong.h"
 
+//PlayerPaddle class definition
 class PlayerPaddle : public QObject, public QGraphicsRectItem {
+    //Uses SIGNALS and SLOTS
     Q_OBJECT
 public:
     PlayerPaddle(Pong *pong, QGraphicsScene *s, QTimer *t, int indent);

@@ -1,3 +1,15 @@
+/* pong.cpp
+ *
+ * Implementation file for Pong class
+ *
+ * Pong is the ball which moves around the screen. It uses
+ * a move method to check for top and bottom collisions, and
+ * flips its yVelocity when deflected. This is tied into the
+ * global timer to allow for pausing and automated motion.
+ *
+ * J Karstin Neill       1.22.18
+ */
+
 #include "pong.h"
 #include <QGraphicsScene>
 #include <QTimer>
@@ -40,11 +52,13 @@ void Pong::move() {
 }
 
 //Called by a paddle to allow pong deflection on collision
+//Adds on yVel to yVelocity to allow for paddles to alter Pong movement
 void Pong::deflect(double yVel) {
     isDeflected = true;
     paddleYVel = yVel;
 }
 
+//Resets position and velocity to starting default
 void Pong::reset() {
     setPos(scene()->width()/2 - rect().width()/2, scene()->height()/2 - rect().height()/2);
     isDeflected = false;
