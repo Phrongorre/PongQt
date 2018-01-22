@@ -1,3 +1,10 @@
+/* main.cpp
+ *
+ * Main program file. Sets up and execute the game.
+ *
+ * J Karstin Neill       1.22.18
+ */
+
 #include <QApplication>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -8,9 +15,12 @@
 #include "enemypaddle.h"
 #include "playerpaddle.h"
 
+//main function
 int main(int argc, char **argv) {
+    //Create application
     QApplication a (argc, argv);
 
+    //Create basic elements of game
     QTimer *timer = new QTimer();
     QGraphicsScene *scene = new QGraphicsScene();
     QGraphicsView *view = new QGraphicsView();
@@ -20,11 +30,13 @@ int main(int argc, char **argv) {
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
+    //Set up the Pong, EnemyPaddle, and PlayerPaddle
     int paddleIndent = 100;
     Pong *p = new Pong(scene, timer);
     EnemyPaddle *ep = new EnemyPaddle(p, scene, timer, paddleIndent);
     PlayerPaddle *pp = new PlayerPaddle(p, scene, timer, paddleIndent);
 
+    //Set up the pause window
     QGraphicsRectItem *pauseRect = new QGraphicsRectItem();
     scene->addItem(pauseRect);
     pauseRect->setRect(0, 0, 650, 200);
@@ -36,6 +48,7 @@ int main(int argc, char **argv) {
                        "Use [UP] and [DOWN] arrow keys to move your paddle\n"
                        "(positioned on the right side of the screen)\n\n"
                        "Press [ESC] to quit Pong.");
+    //Add pause window to PlayerPaddle
     pp->addPauseWindow(pauseRect);
 
     //Put PlayerPaddle in focus for input control
